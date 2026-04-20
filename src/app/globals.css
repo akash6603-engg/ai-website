@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #ffffff;
+  --bg-muted: #f8f9fa;
+  --bg-dark: #0f172a;
+  --text: #212529;
+  --text-muted: #6c757d;
+  --border: #e9ecef;
+  --accent: #0d6efd;
+  --accent-hover: #0b5ed7;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html { scroll-behavior: smooth; }

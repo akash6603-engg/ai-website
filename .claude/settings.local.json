@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cmd.exe *)",
+      "WebSearch",
+      "WebFetch(domain:infyom.com)",
+      "Bash(mkdir -p \"/c/Users/Dell/Desktop/claude_test_app/src/app/services/[slug]\")",
+      "Bash(mkdir -p \"/c/Users/Dell/Desktop/claude_test_app/src/lib\")",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git config *)"
+    ]
+  }
+}
