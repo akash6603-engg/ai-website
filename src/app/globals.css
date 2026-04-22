@@ -71,7 +71,7 @@ html { scroll-behavior: smooth; }
 
 .scroll-indicator {
   position: absolute;
-  bottom: 2rem;
+  bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -80,6 +80,15 @@ html { scroll-behavior: smooth; }
   gap: 6px;
   animation: scroll-bounce 2s ease-in-out infinite;
   cursor: pointer;
+}
+
+@media (min-height: 700px) {
+  .scroll-indicator { bottom: 2rem; }
+}
+
+/* ── Mobile touch targets ── */
+@media (max-width: 768px) {
+  .blob { filter: blur(50px); }
 }
 
 /* ── Glow pulse for cards ── */

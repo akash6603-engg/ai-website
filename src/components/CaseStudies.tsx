@@ -156,7 +156,7 @@ const cases: Case[] = [
 
 export default function CaseStudies() {
   return (
-    <section id="case-studies" className="py-20 px-6 bg-gray-50">
+    <section id="case-studies" className="py-14 md:py-20 px-4 sm:px-6 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

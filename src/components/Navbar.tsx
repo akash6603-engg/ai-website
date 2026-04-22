@@ -57,6 +57,7 @@ const navItems: NavItem[] = [
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -165,21 +166,60 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white border-t border-gray-200 px-6 pb-6"
+            className="lg:hidden bg-white border-t border-gray-200 px-4 pb-6 overflow-hidden"
           >
-            <div className="flex flex-col gap-3 pt-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href ?? "#"}
-                  className="text-gray-700 font-medium py-1"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
+            <div className="flex flex-col pt-4">
+              {navItems.map((item) =>
+                item.children ? (
+                  <div key={item.label}>
+                    <button
+                      className="w-full flex items-center justify-between py-3 text-gray-700 font-medium border-b border-gray-100"
+                      onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
+                    >
+                      {item.label}
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform duration-200 ${mobileExpanded === item.label ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {mobileExpanded === item.label && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pl-3 py-2 flex flex-col gap-1 bg-gray-50 rounded-lg mt-1 mb-1">
+                            {item.children.map((child) => (
+                              <Link
+                                key={child.href}
+                                href={child.href}
+                                className="text-sm text-gray-600 py-2 px-2 hover:text-blue-600 transition-colors rounded"
+                                onClick={() => setMobileOpen(false)}
+                              >
+                                {child.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <Link
+                    key={item.label}
+                    href={item.href ?? "#"}
+                    className="text-gray-700 font-medium py-3 border-b border-gray-100"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
               <button
-                className="bg-blue-600 text-white text-sm font-semibold px-5 py-2.5 rounded-lg text-center mt-2"
+                className="bg-blue-600 text-white text-sm font-semibold px-5 py-3 rounded-lg text-center mt-4"
                 onClick={() => { setMobileOpen(false); setModalOpen(true); }}
               >
                 Contact Us

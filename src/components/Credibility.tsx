@@ -40,7 +40,7 @@ function CountUp({ target, suffix, decimals = 0 }: { target: number; suffix: str
 
 export default function Credibility() {
   return (
-    <section className="py-16 px-6 bg-white border-y border-gray-200">
+    <section className="py-12 md:py-16 px-4 sm:px-6 bg-white border-y border-gray-200">
       <div className="max-w-7xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}

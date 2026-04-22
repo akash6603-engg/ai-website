@@ -39,9 +39,9 @@ const stats = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-20 px-6 bg-gray-900">
+    <section className="py-14 md:py-20 px-4 sm:px-6 bg-gray-900">
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}

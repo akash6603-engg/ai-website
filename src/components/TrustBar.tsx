@@ -16,7 +16,7 @@ export default function TrustBar() {
         >
           Globally Trusted Stack: We Integrate With
         </motion.p>
-        <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-3">
+        <div className="flex flex-wrap justify-center items-center gap-x-5 gap-y-3 sm:gap-x-8">
           {platforms.map((p, i) => (
             <motion.span
               key={p}

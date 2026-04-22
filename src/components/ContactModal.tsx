@@ -66,7 +66,7 @@ export default function ContactModal({ open, onClose }: Props) {
           >
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
               {/* Header */}
-              <div className="flex items-start justify-between px-8 pt-8 pb-2">
+              <div className="flex items-start justify-between px-5 pt-6 pb-2 sm:px-8 sm:pt-8">
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900">Contact Us</h2>
                   <p className="text-gray-500 text-sm mt-1 leading-relaxed">
@@ -84,7 +84,7 @@ export default function ContactModal({ open, onClose }: Props) {
 
               {/* Success state */}
               {status === "success" ? (
-                <div className="px-8 py-12 flex flex-col items-center text-center gap-4">
+                <div className="px-5 py-10 sm:px-8 sm:py-12 flex flex-col items-center text-center gap-4">
                   <CheckCircle2 size={48} className="text-green-500" />
                   <h3 className="text-xl font-bold text-gray-900">Message Sent!</h3>
                   <p className="text-gray-500 text-sm">We will get back to you within 24 hours.</p>
@@ -96,7 +96,7 @@ export default function ContactModal({ open, onClose }: Props) {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="px-8 pb-8 pt-6">
+                <form onSubmit={handleSubmit} className="px-5 pb-6 pt-5 sm:px-8 sm:pb-8 sm:pt-6">
                   <div className="flex flex-col gap-6">
                     <div>
                       <label className="text-xs text-gray-500 font-medium mb-1 block">Full Name *</label>

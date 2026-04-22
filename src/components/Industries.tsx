@@ -18,7 +18,7 @@ const industryItems = [
 
 export default function Industries() {
   return (
-    <section id="industries" className="py-20 px-6 bg-gray-50">
+    <section id="industries" className="py-14 md:py-20 px-4 sm:px-6 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -39,7 +39,7 @@ export default function Industries() {
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200 border border-gray-200 rounded-2xl overflow-hidden">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200 border border-gray-200 rounded-2xl overflow-hidden">
           {industryItems.map((item, i) => (
             <motion.div
               key={item.label}

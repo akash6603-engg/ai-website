@@ -37,7 +37,7 @@ export default function AIAgents() {
   return (
     <>
       {/* WhatsApp Agents */}
-      <section className="py-20 px-6 bg-gray-50">
+      <section className="py-14 md:py-20 px-4 sm:px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -61,7 +61,7 @@ export default function AIAgents() {
             </div>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
             {whatsappAgents.map((a, i) => (
               <motion.div
                 key={a.title}
@@ -86,7 +86,7 @@ export default function AIAgents() {
       </section>
 
       {/* Voice AI Agents */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-14 md:py-20 px-4 sm:px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -110,7 +110,7 @@ export default function AIAgents() {
             </div>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
             {voiceAgents.map((a, i) => (
               <motion.div
                 key={a.title}

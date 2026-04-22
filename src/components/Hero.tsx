@@ -22,9 +22,9 @@ export default function Hero() {
   return (
     <section className="relative pt-16 overflow-hidden bg-white min-h-screen flex items-center">
       {/* Animated blobs */}
-      <div className="blob blob-1 w-96 h-96 bg-blue-300 top-10 -left-20" />
-      <div className="blob blob-2 w-80 h-80 bg-violet-300 top-32 right-10" />
-      <div className="blob blob-3 w-64 h-64 bg-sky-200 bottom-20 left-1/3" />
+      <div className="blob blob-1 w-48 h-48 md:w-96 md:h-96 bg-blue-300 top-10 -left-20" />
+      <div className="blob blob-2 w-40 h-40 md:w-80 md:h-80 bg-violet-300 top-32 right-10" />
+      <div className="blob blob-3 w-32 h-32 md:w-64 md:h-64 bg-sky-200 bottom-20 left-1/3" />
 
       {/* Grid overlay */}
       <div
@@ -108,8 +108,10 @@ export default function Hero() {
           </motion.div>
 
           {/* Right — live workflow animation */}
-          <div className="hidden md:flex justify-center items-center">
-            <AIWorkflowAnimation />
+          <div className="flex justify-center items-center mt-4 md:mt-0">
+            <div className="w-full max-w-[340px] sm:max-w-[420px] md:max-w-none">
+              <AIWorkflowAnimation />
+            </div>
           </div>
         </div>
       </div>
