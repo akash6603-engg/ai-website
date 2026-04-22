@@ -43,7 +43,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-8 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-10 md:py-8 w-full">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           {/* Left — text */}
           <motion.div variants={container} initial="hidden" animate="show">
@@ -116,8 +116,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator — hidden on mobile to avoid overlap */}
-      <a href="#services" className="scroll-indicator z-10 hidden sm:flex" aria-label="Scroll down">
+      {/* Scroll indicator — only shown when 2-col layout is active */}
+      <a href="#services" className="scroll-indicator z-10 hidden md:flex" aria-label="Scroll down">
         <span className="text-xs text-gray-400 font-medium tracking-widest uppercase">Scroll</span>
         <ChevronDown size={18} className="text-gray-400" />
       </a>

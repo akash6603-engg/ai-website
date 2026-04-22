@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 export type WorkflowNode = {
   label: string;
   sublabel: string;
@@ -32,11 +30,19 @@ export default function AnimatedWorkflow({ nodes, uid }: { nodes: WorkflowNode[]
       to { stroke-dashoffset: -18; }
     }
     @keyframes aw-pulse-${uid} {
-      0%,100% { opacity:0.7; r:3.5px; }
-      50%      { opacity:0.2; r:6px;  }
+      0%,100% { opacity:0.7; }
+      50%      { opacity:0.2; }
+    }
+    @keyframes aw-fadein-${uid} {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
     .aw-flow-${uid}  { animation: aw-flow-${uid} 0.9s linear infinite; }
     .aw-pulse-${uid} { animation: aw-pulse-${uid} 2.2s ease-in-out infinite; }
+    .aw-node-${uid}  {
+      opacity: 0;
+      animation: aw-fadein-${uid} 0.45s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
   `;
 
   return (
@@ -67,7 +73,8 @@ export default function AnimatedWorkflow({ nodes, uid }: { nodes: WorkflowNode[]
         const as = x + NW + 2;
         const ae = x + NW + GAP - 5;
         const pktPath = `M ${as} ${my} L ${ae + 5} ${my}`;
-        const delay = `${i * 0.55}s`;
+        const connDelay = `${i * 0.55}s`;
+        const nodeDelay = `${i * 0.13}s`;
 
         return (
           <g key={i}>
@@ -90,7 +97,7 @@ export default function AnimatedWorkflow({ nodes, uid }: { nodes: WorkflowNode[]
                 <circle r="3" fill={TYPE[nodes[i + 1].type].dot} opacity="0.85">
                   <animateMotion
                     dur="1.7s"
-                    begin={delay}
+                    begin={connDelay}
                     repeatCount="indefinite"
                     path={pktPath}
                   />
@@ -98,12 +105,10 @@ export default function AnimatedWorkflow({ nodes, uid }: { nodes: WorkflowNode[]
               </g>
             )}
 
-            {/* Node entrance animation wrapper */}
-            <motion.g
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.13, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            {/* Node — CSS keyframe fade-in, no Framer Motion on SVG elements */}
+            <g
+              className={`aw-node-${uid}`}
+              style={{ animationDelay: nodeDelay }}
             >
               {/* Ambient glow behind node */}
               <ellipse
@@ -157,7 +162,7 @@ export default function AnimatedWorkflow({ nodes, uid }: { nodes: WorkflowNode[]
               >
                 {node.sublabel}
               </text>
-            </motion.g>
+            </g>
           </g>
         );
       })}
