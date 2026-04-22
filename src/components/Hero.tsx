@@ -116,8 +116,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <a href="#services" className="scroll-indicator z-10" aria-label="Scroll down">
+      {/* Scroll indicator — hidden on mobile to avoid overlap */}
+      <a href="#services" className="scroll-indicator z-10 hidden sm:flex" aria-label="Scroll down">
         <span className="text-xs text-gray-400 font-medium tracking-widest uppercase">Scroll</span>
         <ChevronDown size={18} className="text-gray-400" />
       </a>

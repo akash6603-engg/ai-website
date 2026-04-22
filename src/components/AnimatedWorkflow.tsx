@@ -42,8 +42,9 @@ export default function AnimatedWorkflow({ nodes, uid }: { nodes: WorkflowNode[]
   return (
     <svg
       viewBox={`-4 -4 ${totalW + 8} ${SH + 8}`}
-      width="100%"
+      width={totalW + 8}
       height={SH + 8}
+      style={{ display: "block", minWidth: totalW + 8 }}
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>

@@ -198,8 +198,10 @@ export default function CaseStudies() {
                 </div>
                 {/* Animated workflow diagram */}
                 <div className="rounded-xl bg-white border border-gray-200 overflow-hidden">
-                  <div className="px-3 py-2 overflow-x-auto">
-                    <AnimatedWorkflow nodes={c.workflow} uid={`case-${i}`} />
+                  <div className="py-3 overflow-x-auto scroll-smooth">
+                    <div className="px-3 w-max">
+                      <AnimatedWorkflow nodes={c.workflow} uid={`case-${i}`} />
+                    </div>
                   </div>
                 </div>
               </div>
