@@ -47,8 +47,13 @@ export default function Industries() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.06 }}
-              className="bg-white p-7 hover:bg-blue-50 transition-colors group"
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="bg-white p-7 hover:bg-blue-50 transition-colors group relative"
             >
+              <span className="absolute top-5 right-5 flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-50" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
+              </span>
               <span className="text-3xl">{item.icon}</span>
               <h3 className="text-gray-900 font-bold text-base mt-3 mb-2">{item.label}</h3>
               <p className="text-gray-500 text-sm leading-relaxed mb-4">{item.desc}</p>

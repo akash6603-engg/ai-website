@@ -6,7 +6,7 @@ import { CheckCircle2 } from "lucide-react";
 const reasons = [
   {
     title: "Custom AI, Not Cookie-Cutter",
-    desc: "Every automation is built specifically for your store, stack, and goals — not recycled templates or off-the-shelf SaaS.",
+    desc: "Every automation is built specifically for your store, stack, and goals, not recycled templates or off-the-shelf SaaS.",
   },
   {
     title: "Ecommerce-First Expertise",
@@ -14,7 +14,7 @@ const reasons = [
   },
   {
     title: "Measurable ROI from Day One",
-    desc: "Every build comes with KPI tracking. You see exactly what the AI is saving — tickets reduced, revenue added, hours freed.",
+    desc: "Every build comes with KPI tracking. You see exactly what the AI is saving: tickets reduced, revenue added, hours freed.",
   },
   {
     title: "Rapid Deployment (2–6 Weeks)",
@@ -22,7 +22,7 @@ const reasons = [
   },
   {
     title: "GDPR-Compliant for EU Clients",
-    desc: "All EU projects are built with full GDPR compliance — proper consent flows, data minimization, and regional storage.",
+    desc: "All EU projects are built with full GDPR compliance, with proper consent flows, data minimization, and regional storage.",
   },
   {
     title: "Ongoing Support & Optimisation",
@@ -56,17 +56,25 @@ export default function WhyChooseUs() {
               <br />AI Automation
             </h2>
             <p className="text-gray-400 mb-8 leading-relaxed">
-              We build AI systems that genuinely transform how ecommerce brands operate —
+              We build AI systems that genuinely transform how ecommerce brands operate,
               not just chatbots, but end-to-end automation that touches every part of your business.
             </p>
 
             {/* Stats row */}
             <div className="grid grid-cols-2 gap-4">
-              {stats.map((s) => (
-                <div key={s.label} className="bg-gray-800 rounded-xl p-4">
+              {stats.map((s, i) => (
+                <motion.div
+                  key={s.label}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+                  whileHover={{ scale: 1.04, transition: { duration: 0.2 } }}
+                  className="bg-gray-800 hover:bg-gray-700 rounded-xl p-4 transition-colors duration-200 cursor-default"
+                >
                   <div className="text-2xl font-black text-white">{s.value}</div>
                   <div className="text-gray-400 text-xs mt-1">{s.label}</div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>

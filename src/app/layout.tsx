@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "AI Automation for Ecommerce | Osmosis AI & Data Solutions",
   description:
-    "Custom AI automation for ecommerce brands in the US, UK & Europe. Cut support costs by 68%, boost email revenue 3×, and automate operations — without growing your team.",
+    "Custom AI automation for ecommerce brands in the US, UK & Europe. Cut support costs by 68%, boost email revenue 3x, and automate operations without growing your team.",
   keywords: [
     "AI automation for ecommerce",
     "ecommerce AI automation",

@@ -14,7 +14,7 @@ export default function TrustBar() {
           viewport={{ once: true }}
           className="text-center text-xs text-gray-400 uppercase tracking-widest font-medium mb-5"
         >
-          Globally Trusted Stack — We Integrate With
+          Globally Trusted Stack: We Integrate With
         </motion.p>
         <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-3">
           {platforms.map((p, i) => (

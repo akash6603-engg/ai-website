@@ -7,6 +7,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import type { ServiceData } from "@/lib/services-data";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const ParticleNetwork = dynamic(() => import("@/components/ParticleNetwork"), { ssr: false });
 
 export default function ServicePageClient({ service }: { service: ServiceData }) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -17,6 +20,7 @@ export default function ServicePageClient({ service }: { service: ServiceData })
       <main>
         {/* ── Hero ── */}
         <section className="relative pt-28 pb-16 px-6 bg-white overflow-hidden">
+          <ParticleNetwork className="opacity-40" color="37, 99, 235" count={45} maxDist={120} />
           <div
             className="absolute inset-0 -z-10 opacity-30"
             style={{

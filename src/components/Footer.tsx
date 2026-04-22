@@ -18,7 +18,7 @@ export default function Footer() {
               Osmosis<span className="text-blue-400"> AI</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-5">
-              Driving growth through smart, scalable AI automation for businesses in the US, UK, and Europe.
+              Empowering businesses worldwide with intelligent AI automation, no matter where you are.
             </p>
             <div className="space-y-2 text-sm text-gray-400">
               <div className="flex items-start gap-2">
@@ -29,7 +29,7 @@ export default function Footer() {
               </div>
               <div className="flex items-start gap-2">
                 <Phone size={14} className="text-blue-400 shrink-0 mt-0.5" />
-                <span>US · UK · EU Clients Welcome</span>
+                <a href="tel:+917208581082" className="hover:text-white transition-colors">+91 7208581082</a>
               </div>
               <div className="flex items-start gap-2">
                 <MapPin size={14} className="text-blue-400 shrink-0 mt-0.5" />

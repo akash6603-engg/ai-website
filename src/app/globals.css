@@ -9,6 +9,9 @@
   --border: #e9ecef;
   --accent: #0d6efd;
   --accent-hover: #0b5ed7;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 body {
@@ -18,3 +21,102 @@ body {
 }
 
 html { scroll-behavior: smooth; }
+
+/* ── Floating blobs ── */
+@keyframes blob-drift {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(30px, -20px) scale(1.05); }
+  66%       { transform: translate(-20px, 15px) scale(0.96); }
+}
+
+@keyframes blob-drift-reverse {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(-25px, 20px) scale(1.04); }
+  66%       { transform: translate(20px, -15px) scale(0.97); }
+}
+
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.blob-1 { animation: blob-drift 12s ease-in-out infinite; }
+.blob-2 { animation: blob-drift-reverse 15s ease-in-out infinite; }
+.blob-3 { animation: blob-drift 18s ease-in-out infinite 3s; }
+
+/* ── Shimmer gradient text ── */
+@keyframes shimmer-text {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, #2563eb, #7c3aed, #2563eb);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-text 4s ease infinite;
+}
+
+/* ── Scroll bounce indicator ── */
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.8; }
+  50%       { transform: translateX(-50%) translateY(10px); opacity: 0.4; }
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: scroll-bounce 2s ease-in-out infinite;
+  cursor: pointer;
+}
+
+/* ── Glow pulse for cards ── */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+  50%       { box-shadow: 0 0 20px 4px rgba(37, 99, 235, 0.12); }
+}
+
+.card-glow:hover { animation: glow-pulse 2s ease-in-out infinite; }
+
+/* ── Gradient border reveal on hover ── */
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.gradient-border:hover::before { opacity: 1; }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .blob, .shimmer-text, .scroll-indicator {
+    animation: none !important;
+  }
+  * { transition-duration: 0.01ms !important; }
+}

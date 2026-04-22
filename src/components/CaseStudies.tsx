@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import Image from "next/image";
-import WorkflowDiagram from "./WorkflowDiagram";
+import AnimatedWorkflow from "./AnimatedWorkflow";
+import type { WorkflowNode } from "./AnimatedWorkflow";
 
 type Case = {
   tag: string;
@@ -15,8 +15,7 @@ type Case = {
   results: string[];
   tools: string[];
   toolColors: string[];
-  workflowImage?: string;
-  workflow: { label: string; sublabel: string; type: "trigger" | "ai" | "action" | "database" | "notify" }[];
+  workflow: WorkflowNode[];
 };
 
 const cases: Case[] = [
@@ -25,7 +24,7 @@ const cases: Case[] = [
     tagColor: "bg-blue-50 text-blue-700 border-blue-100",
     title: "Website Lead Automation via n8n",
     client: "UK B2B Ecommerce SaaS · £1.6M ARR",
-    challenge: "Sales team manually copy-pasting website form submissions into HubSpot — taking 20 min per lead, missing duplicates, and sending no instant reply to prospects. 30% of leads went uncontacted for 48+ hours, costing pipeline.",
+    challenge: "Sales team manually copy-pasting website form submissions into HubSpot, taking 20 min per lead, missing duplicates, and sending no instant reply to prospects. 30% of leads went uncontacted for 48+ hours, costing pipeline.",
     solution: "Built a 5-step n8n workflow: form submission fires instantly, a personalised thank-you email goes to the lead within seconds, Apollo enriches the contact with job title, LinkedIn, and company size, the enriched record is pushed into HubSpot with deduplication, then a Slack + email alert fires to the right sales rep with the full lead profile.",
     results: ["Lead response time: 48hrs → 90 secs", "100% CRM data completeness", "Zero duplicate contacts", "3× more discovery calls booked"],
     tools: ["Website Form", "n8n", "Apollo", "HubSpot", "Email", "Slack"],
@@ -37,7 +36,6 @@ const cases: Case[] = [
       "bg-slate-100 text-slate-700",
       "bg-slate-100 text-slate-700",
     ],
-    workflowImage: "/workflow-lead-automation.png",
     workflow: [
       { label: "Web Form", sublabel: "Lead Submitted", type: "trigger" as const },
       { label: "Thank-You Email", sublabel: "Auto Reply", type: "notify" as const },
@@ -51,7 +49,7 @@ const cases: Case[] = [
     tagColor: "bg-orange-50 text-orange-700 border-orange-100",
     title: "AI Customer Support Chatbot",
     client: "US Shopify Fashion Brand · $2.4M ARR",
-    challenge: "Support team handling 800+ tickets/week. 40% were repetitive — order status, returns, stock availability. Response times averaging 18 hours.",
+    challenge: "Support team handling 800+ tickets/week. 40% were repetitive: order status, returns, stock availability. Response times averaging 18 hours.",
     solution: "Built an AI chatbot triggered via Shopify's webhook, querying live order and inventory data from Airtable, with OpenAI GPT handling natural conversation and memory.",
     results: ["68% ticket reduction", "< 10s response time", "24/7 coverage", "$12K/mo support cost saved"],
     tools: ["Shopify", "n8n", "OpenAI", "Airtable"],
@@ -69,7 +67,7 @@ const cases: Case[] = [
     tagColor: "bg-purple-50 text-purple-700 border-purple-100",
     title: "Abandoned Cart Recovery AI",
     client: "UK Beauty Brand · £1.8M ARR",
-    challenge: "73% cart abandonment rate. Manual follow-up emails sent 24hrs later with no personalization — recovering only 4% of abandoned carts.",
+    challenge: "73% cart abandonment rate. Manual follow-up emails sent 24hrs later with no personalization, recovering only 4% of abandoned carts.",
     solution: "Built an n8n workflow that triggers 45 mins post-abandonment, uses OpenAI to generate personalized recovery messages based on cart items and customer history, then delivers via Klaviyo email + Twilio SMS.",
     results: ["31% cart recovery rate", "7× uplift vs manual", "£62K recovered in 90 days", "Full personalization"],
     tools: ["Shopify", "n8n", "OpenAI", "Klaviyo", "Twilio"],
@@ -141,7 +139,7 @@ const cases: Case[] = [
     tagColor: "bg-rose-50 text-rose-700 border-rose-100",
     title: "AI Product Description Generator",
     client: "WooCommerce Electronics Store · €900K ARR",
-    challenge: "4,000 SKU catalogue. Product descriptions written manually — inconsistent, SEO-weak, took 20 min per product. New product launch times were 3–5 days.",
+    challenge: "4,000 SKU catalogue. Product descriptions written manually, inconsistent, SEO-weak, took 20 min per product. New product launch times were 3-5 days.",
     solution: "Built an n8n pipeline that reads new product data from Google Sheets, sends specs to OpenAI with a brand-voice prompt and SEO instructions, writes descriptions directly to WooCommerce via API, and logs all outputs.",
     results: ["4,000 products described in 8 hours", "Organic traffic +34% in 60 days", "Launch time: 5 days → 2 hours", "Brand voice consistency 100%"],
     tools: ["Google Sheets", "n8n", "OpenAI", "WooCommerce"],
@@ -171,7 +169,7 @@ export default function CaseStudies() {
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Case Studies</h2>
               <p className="mt-2 text-gray-500 max-w-xl">
-                Real AI automation workflows we built for ecommerce clients — with the actual n8n pipeline diagrams.
+                Real AI automation workflows we built for ecommerce clients, with the actual n8n pipeline diagrams.
               </p>
             </div>
             <a href="#contact" className="flex items-center gap-1.5 text-blue-600 font-semibold text-sm hover:text-blue-700 shrink-0">
@@ -198,23 +196,11 @@ export default function CaseStudies() {
                   </span>
                   <span className="text-xs text-gray-400 font-medium">n8n Workflow</span>
                 </div>
-                {/* Workflow diagram — real image or SVG fallback */}
+                {/* Animated workflow diagram */}
                 <div className="rounded-xl bg-white border border-gray-200 overflow-hidden">
-                  {c.workflowImage ? (
-                    <div className="relative w-full h-48">
-                      <Image
-                        src={c.workflowImage}
-                        alt={`${c.title} workflow diagram`}
-                        fill
-                        className="object-contain p-3"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                    </div>
-                  ) : (
-                    <div className="p-3 overflow-x-auto">
-                      <WorkflowDiagram nodes={c.workflow} />
-                    </div>
-                  )}
+                  <div className="px-3 py-2 overflow-x-auto">
+                    <AnimatedWorkflow nodes={c.workflow} uid={`case-${i}`} />
+                  </div>
                 </div>
               </div>
 

@@ -5,11 +5,11 @@ import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 
 const faqs = [
-  { q: "What types of ecommerce businesses do you work with?", a: "We work with DTC brands and online retailers doing $300K–$20M+ ARR on Shopify, WooCommerce, Magento, and BigCommerce across the US, UK, and Europe — in verticals like fashion, beauty, health & wellness, home goods, and electronics." },
+  { q: "What types of ecommerce businesses do you work with?", a: "We work with DTC brands and online retailers doing $300K–$20M+ ARR on Shopify, WooCommerce, Magento, and BigCommerce across the US, UK, and Europe, in verticals like fashion, beauty, health & wellness, home goods, and electronics." },
   { q: "How long does it take to build and deploy an AI automation?", a: "Most projects go from discovery call to live deployment in 3–6 weeks. Simple automations like an AI support chatbot can be live in 2 weeks. Complex systems like multi-channel marketing automation or inventory forecasting typically take 4–8 weeks." },
-  { q: "Do you integrate with our existing tools like Klaviyo, Gorgias, or Shopify?", a: "Yes — we build directly into your existing stack. We integrate with Shopify, WooCommerce, Klaviyo, Attentive, Gorgias, Zendesk, Recharge, n8n, Airtable, and most major ecommerce platforms. You won't need to migrate software." },
+  { q: "Do you integrate with our existing tools like Klaviyo, Gorgias, or Shopify?", a: "Yes, we build directly into your existing stack. We integrate with Shopify, WooCommerce, Klaviyo, Attentive, Gorgias, Zendesk, Recharge, n8n, Airtable, and most major ecommerce platforms. You won't need to migrate software." },
   { q: "What does AI automation for ecommerce actually cost?", a: "Projects start at $3,000–$5,000 for a single automation and $10,000–$25,000+ for full-stack systems. We also offer retainer support. Every engagement starts with a free strategy call." },
-  { q: "Is the AI GDPR-compliant for European customers?", a: "Yes. EU projects are built with full GDPR compliance — proper consent flows, data minimization, data processing agreements, and regional data storage where required." },
+  { q: "Is the AI GDPR-compliant for European customers?", a: "Yes. EU projects are built with full GDPR compliance, with proper consent flows, data minimization, data processing agreements, and regional data storage where required." },
   { q: "What ROI should I expect?", a: "AI customer support typically reduces ticket volume 50–75%. AI email personalization lifts email revenue 2–4×. Inventory AI reduces over/understock costs 30–50%. We track and report all metrics." },
 ];
 

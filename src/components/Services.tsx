@@ -8,13 +8,13 @@ const services = [
   {
     num: "01",
     title: "AI Workflow Automation",
-    desc: "Transform your ecommerce operations with cutting-edge AI to streamline support, logistics, and fulfillment — boosting productivity at every touchpoint.",
+    desc: "Transform your ecommerce operations with cutting-edge AI to streamline support, logistics, and fulfillment, boosting productivity at every touchpoint.",
     href: "/services/ai-workflow-automation",
   },
   {
     num: "02",
     title: "AI Chatbot Development",
-    desc: "Tailor-made AI chatbot solutions trained on your brand voice, product catalogue, and policies — deployed on your site, WhatsApp, or any channel.",
+    desc: "Tailor-made AI chatbot solutions trained on your brand voice, product catalogue, and policies, deployed on your site, WhatsApp, or any channel.",
     href: "/services/ai-chatbot-development",
   },
   {
@@ -26,19 +26,19 @@ const services = [
   {
     num: "04",
     title: "Lead Scoring & Qualification",
-    desc: "AI-driven lead enrichment, scoring, and CRM routing so your sales team only speaks to hot prospects — response time drops from hours to seconds.",
+    desc: "AI-driven lead enrichment, scoring, and CRM routing so your sales team only speaks to hot prospects. Response time drops from hours to seconds.",
     href: "/services/lead-scoring-qualification",
   },
   {
     num: "05",
     title: "Custom GPT Integration",
-    desc: "Embed GPT-4 directly into your store, tools, and workflows — from AI product descriptions to semantic search and internal knowledge bases.",
+    desc: "Embed GPT-4 directly into your store, tools, and workflows: from AI product descriptions to semantic search and internal knowledge bases.",
     href: "/services/custom-gpt-integration",
   },
   {
     num: "06",
     title: "AI Business Intelligence",
-    desc: "Custom dashboards and AI reporting that surface the decisions that drive revenue — from inventory forecasting to campaign attribution and LTV modeling.",
+    desc: "Custom dashboards and AI reporting that surface the decisions that drive revenue, from inventory forecasting to campaign attribution and LTV modeling.",
     href: "/services/ai-business-intelligence",
   },
 ];
@@ -77,8 +77,15 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.07 }}
-              className="bg-white p-7 hover:bg-blue-50 transition-colors group"
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="bg-white p-7 hover:bg-blue-50 transition-colors group relative"
             >
+              {/* Live pulse indicator */}
+              <span className="absolute top-5 right-5 flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-50" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
+              </span>
+
               <span className="text-3xl font-black text-gray-100 group-hover:text-blue-100 transition-colors select-none">
                 {s.num}
               </span>

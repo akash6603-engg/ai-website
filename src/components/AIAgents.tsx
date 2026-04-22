@@ -6,15 +6,15 @@ import { MessageCircle, PhoneCall, ArrowRight } from "lucide-react";
 const whatsappAgents = [
   {
     title: "Customer Support Agent",
-    desc: "Ready-to-use AI WhatsApp assistant for order tracking, returns, product queries, and complaint handling — automated 24/7.",
+    desc: "Ready-to-use AI WhatsApp assistant for order tracking, returns, product queries, and complaint handling, automated 24/7.",
   },
   {
     title: "Sales & Upsell Agent",
-    desc: "AI-powered WhatsApp agent that recommends products, shares promotions, and guides shoppers to checkout — fully automated.",
+    desc: "AI-powered WhatsApp agent that recommends products, shares promotions, and guides shoppers to checkout, fully automated.",
   },
   {
     title: "Post-Purchase Agent",
-    desc: "AI WhatsApp agent that handles delivery updates, review requests, loyalty rewards, and re-engagement — all on autopilot.",
+    desc: "AI WhatsApp agent that handles delivery updates, review requests, loyalty rewards, and re-engagement, all on autopilot.",
   },
 ];
 

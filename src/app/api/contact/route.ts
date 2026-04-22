@@ -1,20 +1,22 @@
 import { NextResponse } from "next/server";
 
-const HEADERS = ["Timestamp", "Name", "Email", "Company", "Platform", "Message"];
+const HEADERS = ["Timestamp", "Source", "Name", "Email", "Phone", "Company", "Platform", "Service", "Message"];
 
 export async function POST(request: Request) {
   try {
-    const { name, email, company, platform, message } = await request.json();
+    const { name, email, phone, company, platform, service, message } = await request.json();
 
-    if (!name || !email || !message) {
+    if (!name || !email) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
     const scriptUrl = process.env.GOOGLE_SCRIPT_URL;
     if (!scriptUrl) {
       console.error("GOOGLE_SCRIPT_URL is not set in .env.local");
-      return NextResponse.json({ error: "Server not configured — missing GOOGLE_SCRIPT_URL" }, { status: 500 });
+      return NextResponse.json({ error: "Server not configured, missing GOOGLE_SCRIPT_URL" }, { status: 500 });
     }
+
+    const source = message && message !== "-" ? "Get Free Consultation" : "Contact Us Modal";
 
     const res = await fetch(scriptUrl, {
       method: "POST",
@@ -24,11 +26,14 @@ export async function POST(request: Request) {
         headers: HEADERS,
         row: [
           new Date().toLocaleString("en-GB", { timeZone: "UTC" }),
+          source,
           name,
           email,
+          phone || "",
           company || "",
           platform || "",
-          message,
+          service || "",
+          message && message !== "-" ? message : "",
         ],
       }),
     });

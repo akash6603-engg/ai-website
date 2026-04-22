@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import Link from "next/link";
+import ContactModal from "./ContactModal";
 
 type NavChild = { label: string; href: string };
 type NavItem =
@@ -56,9 +57,33 @@ const navItems: NavItem[] = [
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 20);
+      setHidden(y > lastY && y > 80);
+      lastY = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <>
+    <motion.header
+      animate={{ y: hidden ? "-100%" : 0 }}
+      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
+        scrolled
+          ? "bg-white/90 backdrop-blur-md border-gray-200 shadow-sm"
+          : "bg-white border-transparent"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="font-bold text-xl text-gray-900 tracking-tight">
@@ -115,15 +140,12 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden lg:flex items-center gap-3">
-          <a href="#contact" className="text-sm text-gray-600 hover:text-gray-900 font-medium transition-colors">
-            Contact Us
-          </a>
-          <a
-            href="#contact"
+          <button
+            onClick={() => setModalOpen(true)}
             className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors"
           >
-            Get Free Quote
-          </a>
+            Contact Us
+          </button>
         </div>
 
         {/* Mobile toggle */}
@@ -156,17 +178,19 @@ export default function Navbar() {
                   {item.label}
                 </Link>
               ))}
-              <a
-                href="#contact"
+              <button
                 className="bg-blue-600 text-white text-sm font-semibold px-5 py-2.5 rounded-lg text-center mt-2"
-                onClick={() => setMobileOpen(false)}
+                onClick={() => { setMobileOpen(false); setModalOpen(true); }}
               >
-                Get Free Quote
-              </a>
+                Contact Us
+              </button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
+
+    <ContactModal open={modalOpen} onClose={() => setModalOpen(false)} />
+    </>
   );
 }
